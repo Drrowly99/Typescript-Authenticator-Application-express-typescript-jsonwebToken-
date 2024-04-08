@@ -13,6 +13,14 @@ export const login = {
     register: async (req:Request, res:Response) => {
         const body: Partial<IncomingData> = req.body
         const password = body.password as string
+        const passwordConfirmation = body.passwordConfirmation as string
+        if(passwordConfirmation !== password){
+            return res.status(400).json({
+                error: 1,
+                message : 'password does not match',
+            })
+        }
+
         const salt = genSaltSync(10);
         body.password = hashSync(password, salt)
         reg_ser.register(body , (err, results)=>{
