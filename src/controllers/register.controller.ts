@@ -1,7 +1,7 @@
 import {genSaltSync, hashSync, compareSync, compare}  from 'bcrypt'
 import {Request, Response, NextFunction} from 'express'
 import {registerService as reg_ser} from '../services/register.service'
-import {IncomingData, User, UserCallback} from '../interface/AuthInterface'
+import {IncomingData} from '../interface/AuthInterface'
 
 
 import jwt from 'jsonwebtoken'

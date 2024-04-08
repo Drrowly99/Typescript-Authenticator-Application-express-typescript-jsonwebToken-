@@ -1,6 +1,6 @@
 import {mysqlPool as pgpool} from '../db/connect';
 import { v4 as uuidv4 } from 'uuid';
-import {IncomingData, User, UserCallback} from '../interface/AuthInterface'
+import {IncomingData, UserCallback} from '../interface/AuthInterface'
 
  export const registerService = {
 
