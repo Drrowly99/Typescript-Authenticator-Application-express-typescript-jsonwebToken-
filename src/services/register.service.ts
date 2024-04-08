@@ -1,13 +1,27 @@
-import {Request, Response, NextFunction} from 'express'
-const getUser = (req:Request, res:Response) => {
-    // Controller logic
-};
+import {mysqlPool as pgpool} from '../db/connect';
+import { v4 as uuidv4 } from 'uuid';
+import {IncomingData, User, UserCallback} from '../interface/AuthInterface'
 
-const updateUser = (req:Request, res:Response) => {
-    // Controller logic
-};
+ export const registerService = {
 
-module.exports = {
-    getUser,
-    updateUser
-};
+    register: (data: Partial<IncomingData>, callback:UserCallback ) =>{
+        pgpool.query(
+            `insert into users(firstName, lastName, email, password, number, user_id) values(?,?,?,?,?,?)`,
+            [
+                data.first_name,
+                data.last_name,
+                data.email,
+                data.password,
+                data.number,
+                uuidv4()
+            ],
+            (err, res, fields) =>{
+                if(err){
+                    return callback(err, null);
+                }
+                return callback(null, res.rows)
+            },
+        )
+    },
+
+}

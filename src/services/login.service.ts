@@ -1,18 +1,7 @@
 import {mysqlPool as pgpool} from '../db/connect';
 import { v4 as uuidv4 } from 'uuid';
+import {IncomingData, User, UserCallback} from '../interface/AuthInterface'
 
-// Define the User interface (assuming you have a User model)
-interface User {
-    id: string;
-    email: string;
-    password:string;
-    // ... other user properties
-  }
-  
-  // Interface for the callback function
-  interface UserCallback {
-    (err: Error | null, user: Partial<User> | null): void;
-  }
 
 
  export const loginService = {
