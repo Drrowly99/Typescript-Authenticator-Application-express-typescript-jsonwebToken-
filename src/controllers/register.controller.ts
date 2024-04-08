@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
 
 
-export const login = {
+export const register = {
 
     register: async (req:Request, res:Response) => {
         const body: Partial<IncomingData> = req.body
